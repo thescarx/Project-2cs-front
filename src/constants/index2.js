@@ -17,6 +17,7 @@ import {
   Assia,
   Sabrina,
   Houssem,
+  Ahmmed,
 } from "../assets";
 
 export const navLinks = [
@@ -60,7 +61,7 @@ export const exemples = [
     id: "feedback-1",
     name: "Ahmed",
     emotion: "Angry",
-    img: Ahmed,
+    img: Ahmmed,
   },
 
   {

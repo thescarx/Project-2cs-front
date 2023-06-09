@@ -27,6 +27,7 @@ import Sabrina from "./Sabrina.jpg";
 import Assia from "./Assia.jpg";
 import Houssem from "./Houssem.jpg";
 import Ahmed from "./Ahmed.jpg";
+import Ahmmed from "./Ahmmed.jpg";
 import slogo from "./slogo.png";
 
 export {
@@ -60,4 +61,5 @@ export {
   Assia,
   Ahmed,
   Houssem,
+  Ahmmed
 };
