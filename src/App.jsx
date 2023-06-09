@@ -11,6 +11,7 @@ import Footer from "./components/Footer"
 import FeedbackCard from "./components/FeedbackCard"
 import Stats from "./components/Stats"
 import Testimonials from "./components/Testimonials"
+import Esi from "./components/Esi"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Billing/>
               {/* <CardDeal/> */}
               <Testimonials/>
+              <Esi/>
               <Clients/>
               <CTA/>
               <Footer/>

@@ -26,7 +26,8 @@ import people03 from "./people03.png";
 import Sabrina from "./Sabrina.jpg";
 import Assia from "./Assia.jpg";
 import Houssem from "./Houssem.jpg";
-import Ahmed from "./Ahmed.jpg"
+import Ahmed from "./Ahmed.jpg";
+import slogo from "./slogo.png";
 
 export {
   airbnb,
@@ -54,6 +55,7 @@ export {
   people01,
   people02,
   people03,
+  slogo,
   Sabrina,
   Assia,
   Ahmed,
