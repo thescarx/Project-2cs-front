@@ -2,7 +2,9 @@ import React from "react";
 import { features } from "../constants/index2";
 import styles from "../style";
 import { layout } from "../style";
-import Button from "./Button";
+import Billing from "./Billing";
+import { feedback } from "../constants/index2";
+import FeedbackCard from "./FeedbackCard";
 
 const FeatureCard = ({ icon, title, content, index }) => (
   <div
@@ -25,21 +27,19 @@ function Business() {
     <section id="features" className={layout.section}>
       <div className={layout.sectionInfo}>
         <h2 className={styles.heading2}>
-          You do the business, <br className="sm:block hidden" /> we’ll handle
-          the money.
+          <br className="sm:block hidden" /> Predicting Identity and Emotional States
         </h2>
         <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-          With the right credit card, you can improve your financial life by
-          building credit, earning rewards and saving money. But with hundreds
-          of credit cards on the market.
+          Advanced models for face recognition and emotion detection, allowing users to accurately predict 
+          the identity of individuals and analyze their emotions based on selected images or real-time video streams.
         </p>
-        <Button styles={"mt-10"} />
       </div>
       <div className={`${layout.sectionImg} flex-col`}>
         {features.map((feature, index) => (
           <FeatureCard key={feature.id} {...feature} index={index} />
         ))}
       </div>
+      
     </section>
   );
 }

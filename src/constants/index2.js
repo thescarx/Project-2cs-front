@@ -1,4 +1,4 @@
-import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star  } from "../assets";
+import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star, Ahmed, Assia, Sabrina, Houssem  } from "../assets";
 
 export const navLinks = [
   {
@@ -7,15 +7,15 @@ export const navLinks = [
   },
   {
     id: "features",
-    title: "Features",
+    title: "Models",
   },
   {
     id: "product",
-    title: "Product",
+    title: "Exemples",
   },
   {
     id: "clients",
-    title: "Clients",
+    title: "About",
   },
 ];
 
@@ -23,25 +23,48 @@ export const features = [
   {
     id: "feature-1",
     icon: star,
-    title: "Rewards",
+    title: "Face recognition",
     content:
-      "The best credit cards offer some tantalizing combinations of promotions and prizes",
+      "Using VGG-Face to extract facial features with a pre-trained VGG-Face model and using a classifier to match those features to known identities.",
   },
   {
     id: "feature-2",
-    icon: shield,
-    title: "100% Secured",
+    icon: star,
+    title: "Emotions recognition",
     content:
-      "We take proactive steps make sure your information and transactions are secure.",
-  },
-  {
-    id: "feature-3",
-    icon: send,
-    title: "Balance Transfer",
-    content:
-      "A balance transfer credit card can save you a lot of money in interest charges.",
+      "Training convolutional neural networks on labeled emotion datasets to learn patterns and features in facial expressions, enabling the classification of emotions from input images.",
   },
 ];
+
+export const exemples = [
+  
+  {
+    id: "feedback-1",
+    name: "Ahmed",
+    emotion: "Angry",
+    img: Ahmed,
+  },
+  
+  {
+    id: "feedback-3",
+    name: "Assia",
+    emotion: "Happy",
+    img: Assia,
+  },
+  {
+    id: "feedback-2",
+    name: "Houssem",
+    emotion: "Neutral",
+    img: Houssem,
+  },
+  {
+    id: "feedback-2",
+    name: "Sabrina",
+    emotion: "Happy",
+    img: Sabrina,
+  },
+];
+
 
 export const feedback = [
   {
