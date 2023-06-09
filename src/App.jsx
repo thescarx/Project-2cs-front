@@ -30,11 +30,12 @@ function App() {
            </div>
            <div className={` bg-primary ${styles.paddingX}  ${styles.flexStart}`} >
             <div className={`${styles.boxWidth}`} >
-              <Stats/>
+              {/* <Stats/> */}
               <Business/>
               <Billing/>
-              <Testimonials/>
+              <Testimonials/>   
               <Esi/>
+              <CTA />
               <Clients/>
               <Footer/>
             </div>

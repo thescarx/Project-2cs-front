@@ -14,7 +14,7 @@ function Footer() {
             className="w-[266px] h-[72px] object-contain"
           />
           <p className={`${styles.paragraph} mt-4 max-w-[312px]`}>
-            A new way to make the payments easy, reliable and secure.
+            A new way to make the predictions easy.
           </p>
         </div>
 
