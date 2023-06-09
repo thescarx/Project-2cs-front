@@ -33,11 +33,9 @@ function App() {
               <Stats/>
               <Business/>
               <Billing/>
-              {/* <CardDeal/> */}
               <Testimonials/>
               <Esi/>
               <Clients/>
-              <CTA/>
               <Footer/>
             </div>
 

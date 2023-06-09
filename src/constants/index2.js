@@ -44,14 +44,14 @@ export const features = [
     icon: star,
     title: "Face recognition",
     content:
-      "Using VGG-Face to extract facial features with a pre-trained VGG-Face model and using a classifier to match those features to known identities.",
+      "Using VGG-Face pre-trained model to extract facial features from input images, capturing unique characteristics such as shapes, textures, and patterns.Then using a classifier to match those features to known identities.We can use this model to authenticate individuals, streamline access control and it's an ideal solution for various applications.",
   },
   {
     id: "feature-2",
     icon: star,
     title: "Emotions recognition",
     content:
-      "Training convolutional neural networks on labeled emotion datasets to learn patterns and features in facial expressions, enabling the classification of emotions from input images.",
+      "Through multiple layers of convolutional and pooling operations, the networks can extract meaningful visual features from facial expressions, such as eyebrow movements, eye shapes, and mouth curvature. By training on a diverse dataset, the CNNs can learn to recognize and differentiate between various emotions, including happiness, sadness, anger,tiredness, neutrality. This empowers the model to accurately classify emotions in real-time scenarios, opening up possibilities for applications in fields like sentiment analysis.",
   },
 ];
 
