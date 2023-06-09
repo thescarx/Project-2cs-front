@@ -5,7 +5,7 @@ function FeedbackCard({content,name,title,img}) {
   return (
     <div className='flex justify-between flex-col px-5 py-5  rounded-[20px] max-w-[290px] md:mr-10 sm:mr-5 mr-0 my-5 feedback-card' >
          <img src={quotes} alt="double_quotes" className=" w-[42px] h-[27px] object-contain" />
-         <p className=' font-poppins font-normal text-[15px] leading-[32px] text-white my-10' >{content}</p>
+         <p className=' font-poppins font-normal text-[20px] leading-[32px] text-white my-10' >{content}</p>
          <div className=' flex flex-row' >
           <img src={img} alt={name} className="w-[48px] h-[48px] rounded-full" />
           <div className=' flex flex-col ml-4' >
