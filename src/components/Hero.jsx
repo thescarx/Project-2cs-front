@@ -15,6 +15,22 @@ function Hero() {
   const firstLoad = useRef(2);
     let ws = useRef(null);
 
+    const [name,setPersonName]=useState('')
+    const [emotion,setPersonEmotion]=useState('')
+
+    const catchInfos = async()=>{
+      ws.current.addEventListener('message', (event) => {
+      const message = JSON.parse(event.data);
+      const { name, emotion, pos, emoPos   } = message;
+
+  // Update state variables with the received information
+  // For example:
+      setPersonName(name);
+      setPersonEmotion(emotion);
+      // setFaceCoordinates(faceCoordinates);
+});
+    }
+
   const startCamera = async () => {
     if(realTime){
       ws.current = new WebSocket('ws://127.0.0.1:8000/ws');
@@ -23,6 +39,8 @@ function Hero() {
           
           console.log('WebSocket connection established');
         };
+
+        catchInfos();
 
       try {
 
@@ -63,13 +81,13 @@ function Hero() {
         ws.current.send(res);
 
         // Schedule the next frame capture
-        const delayTime = 1000; // 1 second delay
-        setTimeout(() => {
-          requestAnimationFrame(sendFrameToBackend);
-        }, delayTime);
+        // const delayTime = 1000; // 1 second delay
+        // setTimeout(() => {
+        //   requestAnimationFrame(sendFrameToBackend);
+        // }, delayTime);
+        // };
+        requestAnimationFrame(sendFrameToBackend);
         };
-        /*requestAnimationFrame(sendFrameToBackend);
-        };*/
 
         // Start capturing frames
         sendFrameToBackend();
@@ -129,8 +147,11 @@ const stopCamera = () => {
 
         return;
       }
+      if(realTime){
         startCamera()
          console.log('finql')
+      }
+        
        }, [realTime]);
 
   const handleSelectedImages = (images) => {
