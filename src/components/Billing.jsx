@@ -11,7 +11,7 @@ function Billing() {
       {
         exemples.map(exemple => (
           <div className='flex justify-between flex-col px-5 py-5  rounded-[20px] max-w-[340px] md:mr-10 sm:mr-5 mr-0 my-5 feedback-card' >
-            <img src={quotes} alt="double_quotes" className=" w-[42px] h-[27px] my-10 object-contain" />
+            {/* <img src={quotes} alt="double_quotes" className=" w-[42px] h-[27px] my-10 object-contain" /> */}
             <div className=' flex flex-row' >
               <img src={exemple.img} alt={exemple.name} className="w-[200px] h-[200px] " />
             </div>
