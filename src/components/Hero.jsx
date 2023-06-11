@@ -13,23 +13,13 @@ function Hero() {
     const videoRef = useRef(null);
   const canvasRef = useRef();
   const firstLoad = useRef(2);
+  const [result,setResult] = useState('')
     let ws = useRef(null);
 
     const [name,setPersonName]=useState('')
     const [emotion,setPersonEmotion]=useState('')
 
-    const catchInfos = async()=>{
-      ws.current.addEventListener('message', (event) => {
-      const message = JSON.parse(event.data);
-      const { name, emotion, pos, emoPos   } = message;
 
-  // Update state variables with the received information
-  // For example:
-      setPersonName(name);
-      setPersonEmotion(emotion);
-      // setFaceCoordinates(faceCoordinates);
-});
-    }
 
   const startCamera = async () => {
     if(realTime){
@@ -94,6 +84,12 @@ function Hero() {
         };
       
        captureFrames();
+
+       ws.current.addEventListener('message', (event) => {
+        // const message = JSON.parse(event.data);
+        console.log('this is message' + event.data)
+        setResult(event.data)
+});
       },)
       
       } catch (error) {
@@ -130,7 +126,7 @@ const stopCamera = () => {
   };
   
 
-useEffect(()=>{},[])
+
 
 
     useEffect(() => {
@@ -191,6 +187,7 @@ useEffect(()=>{},[])
           {!realTime && <img src={robot} alt="billing" className="w-[100%] h-[100%] relative z-[5] blend-bg-gray-500 rounded-md" />}
           {realTime &&<div >
       <video ref={videoRef} autoPlay muted />
+      <p className="bg-red-100">{result.length !== 0 && result}</p>
     </div> }
           
           <div className=" absolute z-[0] w-[40%] h-[35%] pink__gradient top-0 " />
