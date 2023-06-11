@@ -3,52 +3,41 @@ import styles from "../style"
 import { arrowUp} from "../assets"
 import { useRef } from 'react';
 import axios from 'axios';
+import cv2 from "@techstark/opencv-js";
 function PickImages({ onImagesSelected }) {
   const fileInputRef = useRef(null);
   const handleClick = () => {
     onImagesSelected([]);
     fileInputRef.current.click();
-  };
-  const Predict=((images)=>{
-    const imagesArray = [];
+  };  
+  const  Predict = async (images) => {
 
-    for (let i = 0; i < images.length; i++) {
-      const file = images[i];
-      const objectURL = URL.createObjectURL(file);
-      const imageObject = {
-        url: objectURL,
-        name: file.name,
-        emotion: 'happy' 
+    // Create a new FormData object
+    const formData = new FormData();
+    formData.append('image', images[0]);
+
+    try {
+      // Send the image to the backend using fetch
+      const response = await fetch('http://127.0.0.1:8000/predict', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data)
+      const file = images[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        onImagesSelected([{url:reader.result,name:data.results[0].label,emotion:data.results[0].emotion}]);
       };
-      imagesArray.push(imageObject);
+
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error(error);
     }
-    // const formData = new FormData();
-    // images.forEach((image, index) => {
-    //   formData.append(`image${index}`, image.file);
-    // });
-    ///////////////   API HERE   /////////////////////////
-
-    // try {
-    //   axios.post('PREDICTION', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   }).then(data =>{
-    //     const imageObject = {
-    //       url: data.imageUrl,
-    //       name: data.name,
-    //       emotion: data.emotion
-    //     };
-    //     imagesArray.push(imageObject);
-    //   });
-      
-    // } catch (error) {
-    //   console.error(error);
-    // }
-
-
-    onImagesSelected(imagesArray);
-  })
+  };
+  
   return (
     <div className={`${styles.flexCenter} w-[140px] h-[140px] rounded-full bg-blue-gradient p-[2px] cursor-pointer`} onClick={handleClick}>
           <div className={`${styles.flexCenter} flex-col bg-primary w-[100%] h-[100%] rounded-full`} > 
@@ -70,7 +59,6 @@ function PickImages({ onImagesSelected }) {
             ref={fileInputRef}
             type="file"
             accept="image/*"
-            multiple
             style={{ display: 'none' }}
             onChange={(event) => Predict(event.target.files)}
           />
