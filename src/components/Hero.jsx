@@ -5,7 +5,7 @@ import GetStarted from "./PickImages"
 import PickImages from "./PickImages";
 import RealTime from "./RealTime";
 import PredictionOnSelectedImages from "./PredictionOnSelectedImages";
-import cv2 from "@techstark/opencv-js";
+// import cv2 from "@techstark/opencv-js";
 
 function Hero() {
   const [selectedImages, setSelectedImages] = useState([])
@@ -40,7 +40,6 @@ function Hero() {
           console.log('WebSocket connection established');
         };
 
-        catchInfos();
 
       try {
 
@@ -68,17 +67,18 @@ function Hero() {
         // Capture face frame and send it to the backend
         const sendFrameToBackend = () => {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        console.log("this canvas",canvas)
+        // console.log("this canvas",canvas)
         
-        const imageData = cv2.imread(canvas);
+        // const imageData = cv2.imread(canvas);
 
         const res = canvas.toDataURL();
-        console.log("this is imagedata",res)
+        // console.log("this is imagedata",res)
 
         
         console.log("---------------------------------------")
         
         ws.current.send(res);
+        
 
         // Schedule the next frame capture
         // const delayTime = 1000; // 1 second delay
@@ -108,6 +108,7 @@ const stopCamera = () => {
     if (ws.current) {
       ws.current.close();
       console.log('WebSocket disconnected');
+      window.location.reload()
     }
 
     const stream = videoRef.current?.srcObject;
@@ -121,17 +122,15 @@ const stopCamera = () => {
   };
 
   const disconnectWebSocket = () => {
-    if(!realTime){
       if (ws.current) {
       ws.current.send('close');
       console.log('Close request sent to the backend');
     }
     stopCamera();
-    }
   };
   
 
-
+useEffect(()=>{},[])
 
 
     useEffect(() => {
@@ -153,6 +152,8 @@ const stopCamera = () => {
       }
         
        }, [realTime]);
+
+       
 
   const handleSelectedImages = (images) => {
     setSelectedImages(images);
