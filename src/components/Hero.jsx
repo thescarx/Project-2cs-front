@@ -5,7 +5,7 @@ import GetStarted from "./PickImages"
 import PickImages from "./PickImages";
 import RealTime from "./RealTime";
 import PredictionOnSelectedImages from "./PredictionOnSelectedImages";
-import cv2 from "@techstark/opencv-js";
+// import cv2 from "@techstark/opencv-js";
 
 function Hero() {
   const [selectedImages, setSelectedImages] = useState([])
@@ -13,7 +13,13 @@ function Hero() {
     const videoRef = useRef(null);
   const canvasRef = useRef();
   const firstLoad = useRef(2);
+  const [result,setResult] = useState('')
     let ws = useRef(null);
+
+    const [name,setPersonName]=useState('')
+    const [emotion,setPersonEmotion]=useState('')
+
+
 
   const startCamera = async () => {
     if(realTime){
@@ -23,6 +29,7 @@ function Hero() {
           
           console.log('WebSocket connection established');
         };
+
 
       try {
 
@@ -52,30 +59,37 @@ function Hero() {
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         // console.log("this canvas",canvas)
         
-        const imageData = cv2.imread(canvas);
+        // const imageData = cv2.imread(canvas);
 
         const res = canvas.toDataURL();
-        console.log("this is imagedata",res)
+        // console.log("this is imagedata",res)
 
         
         console.log("---------------------------------------")
         
         ws.current.send(res);
+        
 
         // Schedule the next frame capture
-        const delayTime = 1000; // 1 second delay
-        setTimeout(() => {
-          requestAnimationFrame(sendFrameToBackend);
-        }, delayTime);
+        // const delayTime = 1000; // 1 second delay
+        // setTimeout(() => {
+        //   requestAnimationFrame(sendFrameToBackend);
+        // }, delayTime);
+        // };
+        requestAnimationFrame(sendFrameToBackend);
         };
-        /*requestAnimationFrame(sendFrameToBackend);
-        };*/
 
         // Start capturing frames
         sendFrameToBackend();
         };
       
        captureFrames();
+
+       ws.current.addEventListener('message', (event) => {
+        // const message = JSON.parse(event.data);
+        console.log('this is message' + event.data)
+        setResult(event.data)
+});
       },)
       
       } catch (error) {
@@ -90,6 +104,7 @@ const stopCamera = () => {
     if (ws.current) {
       ws.current.close();
       console.log('WebSocket disconnected');
+      window.location.reload()
     }
 
     const stream = videoRef.current?.srcObject;
@@ -103,13 +118,11 @@ const stopCamera = () => {
   };
 
   const disconnectWebSocket = () => {
-    if(!realTime){
       if (ws.current) {
       ws.current.send('close');
       console.log('Close request sent to the backend');
     }
     stopCamera();
-    }
   };
   
 
@@ -129,9 +142,14 @@ const stopCamera = () => {
 
         return;
       }
+      if(realTime){
         startCamera()
          console.log('finql')
+      }
+        
        }, [realTime]);
+
+       
 
   const handleSelectedImages = (images) => {
     setSelectedImages(images);
@@ -169,6 +187,7 @@ const stopCamera = () => {
           {!realTime && <img src={robot} alt="billing" className="w-[100%] h-[100%] relative z-[5] blend-bg-gray-500 rounded-md" />}
           {realTime &&<div >
       <video ref={videoRef} autoPlay muted />
+      <p className="bg-red-100">{result.length !== 0 && result}</p>
     </div> }
           
           <div className=" absolute z-[0] w-[40%] h-[35%] pink__gradient top-0 " />
